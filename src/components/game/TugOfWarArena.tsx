@@ -12,9 +12,9 @@ type Props = {
  * öğrenciler arasında ve ortada uzanır; gövde/boyun/baş üzerinden geçmez.
  */
 const VISIBLE = [
-  [13.4, 17.8],
-  [29.2, 70.8],
-  [82.2, 86.6],
+  [11.4, 17.0],
+  [26.0, 74.0],
+  [83.0, 88.6],
 ];
 
 /** Tek parça halat maskesi — sadece yukarıdaki bölümlerde görünür. */
