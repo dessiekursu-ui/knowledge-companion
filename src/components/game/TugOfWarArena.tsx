@@ -17,17 +17,27 @@ const VISIBLE = [
   [83.0, 88.6],
 ];
 
-/** Tek parça halat maskesi — sadece yukarıdaki bölümlerde görünür. */
+/** Halatın avuç içine doğru yumuşakça girdiği pay (%) — parmaklar halatı kavrıyor gibi. */
+const GRIP_FADE = 1.1;
+
+/** Tek parça halat maskesi — yumruklarda avuç içine doğru yumuşak biçimde kaybolur. */
 const ROPE_MASK = (() => {
   const stops: string[] = [];
   let cursor = 0;
   for (const [start, end] of VISIBLE) {
-    stops.push(`transparent ${cursor}% ${start}%`, `#000 ${start}% ${end}%`);
-    cursor = end as number;
+    const inStart = Math.max(cursor, start - GRIP_FADE);
+    stops.push(
+      `transparent ${cursor}% ${inStart}%`,
+      `rgba(0,0,0,0.55) ${start}%`,
+      `#000 ${start + GRIP_FADE}% ${end - GRIP_FADE}%`,
+      `rgba(0,0,0,0.55) ${end}%`,
+    );
+    cursor = (end as number) + GRIP_FADE;
   }
   stops.push(`transparent ${cursor}% 100%`);
   return `linear-gradient(to right, ${stops.join(", ")})`;
 })();
+
 
 
 /**
