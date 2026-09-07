@@ -8,18 +8,14 @@ type Props = {
 };
 
 /**
- * Halatın görünür olduğu bölümler (halat genişliğine göre %): yumruklardan çıkıp
- * öğrenciler arasında ve ortada uzanır; gövde/boyun/baş üzerinden geçmez.
+ * Halat tek parça ve kesintisiz: soldaki öğrencilerin arkasından başlar, tüm
+ * avuçların içinden geçer ve sağdaki öğrencilerin arkasında biter.
  */
-const VISIBLE: Array<[number, number]> = [
-  [11.4, 17.0],
-  [26.0, 74.0],
-  [83.0, 88.6],
-];
+const VISIBLE: Array<[number, number]> = [[0, 100]];
 
+/** Uçlarda halatın öğrencilerin arkasına girerken yumuşak kaybolma payı (%). */
+const GRIP_FADE = 2.5;
 
-/** Halatın avuç içine doğru yumuşakça girdiği pay (%) — parmaklar halatı kavrıyor gibi. */
-const GRIP_FADE = 1.1;
 
 /** Tek parça halat maskesi — yumruklarda avuç içine doğru yumuşak biçimde kaybolur. */
 const ROPE_MASK = (() => {
@@ -57,8 +53,9 @@ export function TugOfWarArena(_props: Props) {
           className="relative z-10 w-[34%] max-w-[420px]"
         />
 
-        {/* TEK PARÇA, ince ve düz halat — öğrencilerin önünde (z-20), sadece yumruklarda kaybolur */}
-        <div className="pointer-events-none absolute left-[8%] right-[8%] top-[42.3%] z-20 -translate-y-1/2">
+        {/* TEK PARÇA, kesintisiz gri halat — soldaki öğrencilerin arkasından sağdakilerin arkasına */}
+        <div className="pointer-events-none absolute left-[3%] right-[3%] top-[42.3%] z-20 -translate-y-1/2">
+
           <div
             className="w-full rounded-full"
             style={{
