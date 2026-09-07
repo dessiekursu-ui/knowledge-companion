@@ -45,9 +45,9 @@ export function TugOfWarArena({ ropePosition, pulse }: Props) {
               boxShadow:
                 "0 1px 2px rgba(0,0,0,0.35), inset 0 -1px 1px rgba(0,0,0,0.35), inset 0 1px 1px rgba(255,255,255,0.25)",
               WebkitMaskImage:
-                "linear-gradient(to right, #000 0 8%, transparent 10.5% 15%, #000 17% 27%, transparent 29% 33.5%, #000 35.5% 64.5%, transparent 66.5% 71%, #000 73% 83%, transparent 85% 89.5%, #000 92% 100%)",
+                "linear-gradient(to right, #000 0 1.2%, transparent 2% 3.4%, #000 4.2% 11.6%, transparent 12.4% 13.6%, #000 14.4% 17.2%, transparent 18% 19.2%, #000 20% 27.4%, transparent 28.2% 29.4%, #000 30.2% 69.8%, transparent 70.6% 71.8%, #000 72.6% 80%, transparent 80.8% 82%, #000 82.8% 85.6%, transparent 86.4% 87.6%, #000 88.4% 95.8%, transparent 96.6% 97.8%, #000 98.6% 100%)",
               maskImage:
-                "linear-gradient(to right, #000 0 8%, transparent 10.5% 15%, #000 17% 27%, transparent 29% 33.5%, #000 35.5% 64.5%, transparent 66.5% 71%, #000 73% 83%, transparent 85% 89.5%, #000 92% 100%)",
+                "linear-gradient(to right, #000 0 1.2%, transparent 2% 3.4%, #000 4.2% 11.6%, transparent 12.4% 13.6%, #000 14.4% 17.2%, transparent 18% 19.2%, #000 20% 27.4%, transparent 28.2% 29.4%, #000 30.2% 69.8%, transparent 70.6% 71.8%, #000 72.6% 80%, transparent 80.8% 82%, #000 82.8% 85.6%, transparent 86.4% 87.6%, #000 88.4% 95.8%, transparent 96.6% 97.8%, #000 98.6% 100%)",
             }}
           />
         </div>
