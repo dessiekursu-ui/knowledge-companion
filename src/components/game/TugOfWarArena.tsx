@@ -30,10 +30,10 @@ export function TugOfWarArena({ ropePosition, pulse }: Props) {
           }}
         />
 
-        {/* Halat ipi — yumrukların ARKASINDAN geçer (z-[5] < z-10), böylece eller ipi
-            gerçekten kavramış gibi görünür ve ip avuç içinde kaybolur. */}
+        {/* TEK PARÇA sürekli halat — öğrencilerin ÖNÜNDE (z-20 > z-10), sadece yumruk
+            noktalarında maskeyle kayboluyor, böylece eller ipi gerçekten kavrıyor gibi olur. */}
         <div
-          className="pointer-events-none absolute left-[8%] right-[8%] top-[42.3%] z-[5] -translate-y-1/2 transition-transform duration-700 ease-out"
+          className="pointer-events-none absolute left-[8%] right-[8%] top-[42.3%] z-20 -translate-y-1/2 transition-transform duration-700 ease-out"
           style={{ transform: `translate(${shift * 0.2}%, -50%)` }}
         >
           <div
@@ -44,9 +44,14 @@ export function TugOfWarArena({ ropePosition, pulse }: Props) {
                 "repeating-linear-gradient(115deg, #b07a3c 0 6px, #d9a463 6px 11px, #8a5a26 11px 16px)",
               boxShadow:
                 "0 1px 2px rgba(0,0,0,0.35), inset 0 -1px 1px rgba(0,0,0,0.35), inset 0 1px 1px rgba(255,255,255,0.25)",
+              WebkitMaskImage:
+                "linear-gradient(to right, #000 0 1.2%, transparent 2% 3.4%, #000 4.2% 11.6%, transparent 12.4% 13.6%, #000 14.4% 17.2%, transparent 18% 19.2%, #000 20% 27.4%, transparent 28.2% 29.4%, #000 30.2% 69.8%, transparent 70.6% 71.8%, #000 72.6% 80%, transparent 80.8% 82%, #000 82.8% 85.6%, transparent 86.4% 87.6%, #000 88.4% 95.8%, transparent 96.6% 97.8%, #000 98.6% 100%)",
+              maskImage:
+                "linear-gradient(to right, #000 0 1.2%, transparent 2% 3.4%, #000 4.2% 11.6%, transparent 12.4% 13.6%, #000 14.4% 17.2%, transparent 18% 19.2%, #000 20% 27.4%, transparent 28.2% 29.4%, #000 30.2% 69.8%, transparent 70.6% 71.8%, #000 72.6% 80%, transparent 80.8% 82%, #000 82.8% 85.6%, transparent 86.4% 87.6%, #000 88.4% 95.8%, transparent 96.6% 97.8%, #000 98.6% 100%)",
             }}
           />
         </div>
+
 
 
         {/* Kırmızı bayrak — öğrencilerin ortasında */}
