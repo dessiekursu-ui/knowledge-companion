@@ -3,65 +3,66 @@ import teamPull from "@/assets/team-pull-clean.png";
 
 type Props = {
   /** -100 (Takım 1 kazandı) .. 0 (merkez) .. +100 (Takım 2 kazandı) */
-  ropePosition: number;
+  ropePosition?: number;
   pulse?: 1 | 2 | null;
 };
+
+/**
+ * Halatın görünür olduğu bölümler (halat genişliğine göre %): yumruklardan çıkıp
+ * öğrenciler arasında ve ortada uzanır; gövde/boyun/baş üzerinden geçmez.
+ */
+const VISIBLE = [
+  [11.4, 17.0],
+  [26.0, 74.0],
+  [83.0, 88.6],
+];
+
+/** Tek parça halat maskesi — sadece yukarıdaki bölümlerde görünür. */
+const ROPE_MASK = (() => {
+  const stops: string[] = [];
+  let cursor = 0;
+  for (const [start, end] of VISIBLE) {
+    stops.push(`transparent ${cursor}% ${start}%`, `#000 ${start}% ${end}%`);
+    cursor = end as number;
+  }
+  stops.push(`transparent ${cursor}% 100%`);
+  return `linear-gradient(to right, ${stops.join(", ")})`;
+})();
 
 
 /**
  * Ana oyun alanı: solda ve sağda ikişer öğrenci (aynı görsel, sağ taraf aynalanmış),
- * kırmızı bayrak ve orta çizgi.
+ * tek parça yatay halat ve ortada kırmızı bayrak. Statik — karakterler oynamaz.
  */
-export function TugOfWarArena({ ropePosition, pulse }: Props) {
-  // Bayrağın merkezden kayması: -100..100 -> -22%..22%
-  const shift = (ropePosition / 100) * 22;
-
+export function TugOfWarArena(_props: Props) {
   return (
-    <div className="@container relative w-full select-none overflow-hidden">
+    <div className="@container relative w-full select-none overflow-hidden bg-panel">
       <div className="relative flex items-center justify-between gap-2 px-1 sm:px-4">
         <img
           src={teamPull}
           alt="Takım 1 öğrencileri halatı çekiyor"
           width={1200}
           height={896}
-          className="relative z-10 w-[34%] max-w-[420px] origin-center transition-transform duration-700 ease-out"
-          style={{
-            transform: `translateX(${shift * 0.6}%) scale(${pulse === 1 ? 1.04 : 1})`,
-          }}
+          className="relative z-10 w-[34%] max-w-[420px]"
         />
 
-        {/* TEK PARÇA sürekli halat — öğrencilerin ÖNÜNDE (z-20 > z-10), sadece yumruk
-            noktalarında maskeyle kayboluyor, böylece eller ipi gerçekten kavrıyor gibi olur. */}
-        <div
-          className="pointer-events-none absolute left-[8%] right-[8%] top-[42.3%] z-20 -translate-y-1/2 transition-transform duration-700 ease-out"
-          style={{ transform: `translate(${shift * 0.2}%, -50%)` }}
-        >
+        {/* TEK PARÇA, ince ve düz halat — öğrencilerin önünde (z-20), sadece yumruklarda kaybolur */}
+        <div className="pointer-events-none absolute left-[8%] right-[8%] top-[42.3%] z-20 -translate-y-1/2">
           <div
             className="w-full rounded-full"
             style={{
-              height: "max(6px, 0.9cqw)",
+              height: "max(4px, 0.5cqw)",
               background:
-                "repeating-linear-gradient(115deg, #b07a3c 0 6px, #d9a463 6px 11px, #8a5a26 11px 16px)",
-              boxShadow:
-                "0 1px 2px rgba(0,0,0,0.35), inset 0 -1px 1px rgba(0,0,0,0.35), inset 0 1px 1px rgba(255,255,255,0.25)",
-              WebkitMaskImage:
-                "linear-gradient(to right, #000 0 1.2%, transparent 2% 3.4%, #000 4.2% 11.6%, transparent 12.4% 13.6%, #000 14.4% 17.2%, transparent 18% 19.2%, #000 20% 27.4%, transparent 28.2% 29.4%, #000 30.2% 69.8%, transparent 70.6% 71.8%, #000 72.6% 80%, transparent 80.8% 82%, #000 82.8% 85.6%, transparent 86.4% 87.6%, #000 88.4% 95.8%, transparent 96.6% 97.8%, #000 98.6% 100%)",
-              maskImage:
-                "linear-gradient(to right, #000 0 1.2%, transparent 2% 3.4%, #000 4.2% 11.6%, transparent 12.4% 13.6%, #000 14.4% 17.2%, transparent 18% 19.2%, #000 20% 27.4%, transparent 28.2% 29.4%, #000 30.2% 69.8%, transparent 70.6% 71.8%, #000 72.6% 80%, transparent 80.8% 82%, #000 82.8% 85.6%, transparent 86.4% 87.6%, #000 88.4% 95.8%, transparent 96.6% 97.8%, #000 98.6% 100%)",
+                "repeating-linear-gradient(115deg, #b07a3c 0 5px, #d9a463 5px 9px, #8a5a26 9px 13px)",
+              WebkitMaskImage: ROPE_MASK,
+              maskImage: ROPE_MASK,
             }}
           />
         </div>
 
-
-
-        {/* Kırmızı bayrak — öğrencilerin ortasında */}
-
-        <div className="pointer-events-none absolute inset-x-0 top-[42.6%] z-40 flex -translate-y-1/2 items-center">
-
-          <div
-            className="relative flex w-full items-center transition-transform duration-700 ease-out"
-            style={{ transform: `translateX(${shift}%)` }}
-          >
+        {/* Kırmızı bayrak — halatın ortasında */}
+        <div className="pointer-events-none absolute inset-x-0 top-[42.6%] z-30 flex -translate-y-1/2 items-center">
+          <div className="relative flex w-full items-center">
             <div className="absolute left-1/2 -translate-x-1/2">
               <div className="relative h-2 w-2 rounded-full bg-foreground/80">
                 <div className="absolute -top-8 left-1/2 h-8 w-[2px] bg-foreground/80" />
@@ -71,16 +72,12 @@ export function TugOfWarArena({ ropePosition, pulse }: Props) {
           </div>
         </div>
 
-
         <img
           src={teamPullWhite}
           alt="Takım 2 öğrencileri beyaz gömlekle halatı çekiyor"
           width={1200}
           height={896}
-          className="relative z-10 w-[34%] max-w-[420px] origin-center transition-transform duration-700 ease-out"
-          style={{
-            transform: `scaleX(-1) translateX(${-shift * 0.6}%) scale(${pulse === 2 ? 1.04 : 1})`,
-          }}
+          className="relative z-10 w-[34%] max-w-[420px] [transform:scaleX(-1)]"
         />
       </div>
     </div>
