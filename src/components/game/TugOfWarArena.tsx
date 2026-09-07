@@ -10,28 +10,15 @@ type Props = {
 
 /**
  * Ana oyun alanı: solda ve sağda ikişer öğrenci (aynı görsel, sağ taraf aynalanmış),
- * ortadan geçen tek parça eşit kalınlıkta halat, kırmızı bayrak ve orta çizgi.
+ * kırmızı bayrak ve orta çizgi.
  */
 export function TugOfWarArena({ ropePosition, pulse }: Props) {
-  // Halatın merkezden kayması: -100..100 -> -22%..22%
+  // Bayrağın merkezden kayması: -100..100 -> -22%..22%
   const shift = (ropePosition / 100) * 22;
 
   return (
     <div className="@container relative w-full select-none overflow-hidden">
       <div className="relative flex items-center justify-between gap-2 px-1 sm:px-4">
-        {/* Halat (arka katman) — ellerin dışında kalan kısım */}
-        <div className="pointer-events-none absolute inset-x-0 top-[42.6%] z-0 flex -translate-y-1/2 items-center">
-          <div
-            className="relative flex w-full items-center transition-transform duration-700 ease-out"
-            style={{ transform: `translateX(${shift}%)` }}
-          >
-            <div
-              className="absolute left-1/2 h-[clamp(6px,0.7vw,10px)] w-[300%] -translate-x-1/2"
-              style={ROPE_STYLE}
-            />
-          </div>
-        </div>
-
         <img
           src={teamPull}
           alt="Takım 1 öğrencileri halatı çekiyor"
@@ -43,29 +30,7 @@ export function TugOfWarArena({ ropePosition, pulse }: Props) {
           }}
         />
 
-        {/* Halat (ön katman) — dört yumruğun tam üzerinden geçer, böylece
-            öğrenciler halatı gerçekten kavramış gibi görünür. Maske penceresi
-            öğrencilerle birlikte kaydığı için eller her zaman halatı tutar. */}
-        <div
-          className="pointer-events-none absolute inset-x-0 top-[42.6%] z-30 flex -translate-y-1/2 items-center transition-transform duration-700 ease-out"
-          style={{
-            transform: `translateX(${shift * 0.6}%)`,
-            maskImage:
-              "linear-gradient(to right, transparent 0%, transparent 8%, #000 11.5%, #000 88.5%, transparent 92%, transparent 100%)",
-            WebkitMaskImage:
-              "linear-gradient(to right, transparent 0%, transparent 8%, #000 11.5%, #000 88.5%, transparent 92%, transparent 100%)",
-          }}
-        >
-          <div className="relative flex w-full items-center">
-            <div
-              className="absolute left-1/2 h-[clamp(6px,0.7vw,10px)] w-[300%] -translate-x-1/2 shadow-[0_1px_2px_rgba(0,0,0,0.35)]"
-              style={ROPE_STYLE}
-            />
-          </div>
-        </div>
-
-
-        {/* Kırmızı bayrak — halatın ortasında, halatın üstünde durur */}
+        {/* Kırmızı bayrak — öğrencilerin ortasında */}
         <div className="pointer-events-none absolute inset-x-0 top-[42.6%] z-40 flex -translate-y-1/2 items-center">
 
           <div
@@ -80,6 +45,7 @@ export function TugOfWarArena({ ropePosition, pulse }: Props) {
             </div>
           </div>
         </div>
+
 
         <img
           src={teamPullWhite}
