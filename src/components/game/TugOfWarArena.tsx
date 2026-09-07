@@ -30,15 +30,16 @@ export function TugOfWarArena({ ropePosition, pulse }: Props) {
           }}
         />
 
-        {/* Yeni halat ipi — öğrencilerin yumruklarının tam üzerinden geçer (z-20 > z-10) */}
+        {/* Halat ipi — yumrukların ARKASINDAN geçer (z-[5] < z-10), böylece eller ipi
+            gerçekten kavramış gibi görünür ve ip avuç içinde kaybolur. */}
         <div
-          className="pointer-events-none absolute left-[10%] right-[10%] top-[42.3%] z-20 -translate-y-1/2 transition-transform duration-700 ease-out"
+          className="pointer-events-none absolute left-[8%] right-[8%] top-[42.3%] z-[5] -translate-y-1/2 transition-transform duration-700 ease-out"
           style={{ transform: `translate(${shift * 0.2}%, -50%)` }}
         >
           <div
             className="w-full rounded-full"
             style={{
-              height: "max(5px, 0.75cqw)",
+              height: "max(6px, 0.9cqw)",
               background:
                 "repeating-linear-gradient(115deg, #b07a3c 0 6px, #d9a463 6px 11px, #8a5a26 11px 16px)",
               boxShadow:
@@ -46,6 +47,7 @@ export function TugOfWarArena({ ropePosition, pulse }: Props) {
             }}
           />
         </div>
+
 
         {/* Kırmızı bayrak — öğrencilerin ortasında */}
 
