@@ -26,7 +26,7 @@ export function TugOfWarArena({ ropePosition, pulse }: Props) {
   return (
     <div className="@container relative w-full select-none overflow-hidden">
       <div className="relative flex items-center justify-between gap-2 px-1 sm:px-4">
-        {/* Halat — öğrencilerin arkasında kalır, böylece halat elleri kesmez */}
+        {/* Halat (arka katman) — ellerin dışında kalan kısım */}
         <div className="pointer-events-none absolute inset-x-0 top-[42.6%] z-0 flex -translate-y-1/2 items-center">
           <div
             className="relative flex w-full items-center transition-transform duration-700 ease-out"
