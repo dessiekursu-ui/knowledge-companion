@@ -50,8 +50,30 @@ export function TugOfWarArena({ ropePosition, pulse }: Props) {
           }}
         />
 
+        {/* Halat (ön katman) — ellerin önünden geçer, gerçekten tutuyorlarmış gibi görünür */}
+        <div
+          className="pointer-events-none absolute inset-x-0 top-[42.6%] z-30 flex -translate-y-1/2 items-center"
+          style={{
+            maskImage:
+              "linear-gradient(to right, transparent 0%, transparent 18%, #000 27%, #000 73%, transparent 82%, transparent 100%)",
+            WebkitMaskImage:
+              "linear-gradient(to right, transparent 0%, transparent 18%, #000 27%, #000 73%, transparent 82%, transparent 100%)",
+          }}
+        >
+          <div
+            className="relative flex w-full items-center transition-transform duration-700 ease-out"
+            style={{ transform: `translateX(${shift}%)` }}
+          >
+            <div
+              className="absolute left-1/2 h-[clamp(6px,0.7vw,10px)] w-[300%] -translate-x-1/2"
+              style={ROPE_STYLE}
+            />
+          </div>
+        </div>
+
         {/* Kırmızı bayrak — halatın ortasında, halatın üstünde durur */}
-        <div className="pointer-events-none absolute inset-x-0 top-[42.6%] z-20 flex -translate-y-1/2 items-center">
+        <div className="pointer-events-none absolute inset-x-0 top-[42.6%] z-40 flex -translate-y-1/2 items-center">
+
           <div
             className="relative flex w-full items-center transition-transform duration-700 ease-out"
             style={{ transform: `translateX(${shift}%)` }}
