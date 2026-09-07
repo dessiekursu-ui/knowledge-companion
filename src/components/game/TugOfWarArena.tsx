@@ -7,24 +7,28 @@ type Props = {
   pulse?: 1 | 2 | null;
 };
 
-/** Yumrukların halat üzerindeki yatay konumları (halat genişliğine göre %). */
-const GRIPS = [2.6, 12.8, 18.4, 28.6, 71.4, 81.6, 87.2, 97.4];
-const GRIP_HALF = 1.4;
+/**
+ * Halatın görünür olduğu bölümler (halat genişliğine göre %): yumruklardan çıkıp
+ * öğrenciler arasında ve ortada uzanır; gövde/boyun/baş üzerinden geçmez.
+ */
+const VISIBLE = [
+  [13.4, 17.8],
+  [29.2, 70.8],
+  [82.2, 86.6],
+];
 
-/** Tek parça halat: yumruk noktalarında maske ile kaybolur, eller ipi kavramış görünür. */
+/** Tek parça halat maskesi — sadece yukarıdaki bölümlerde görünür. */
 const ROPE_MASK = (() => {
   const stops: string[] = [];
   let cursor = 0;
-  for (const g of GRIPS) {
-    const start = g - GRIP_HALF;
-    const end = g + GRIP_HALF;
-    if (start > cursor) stops.push(`#000 ${cursor}% ${start}%`);
-    stops.push(`transparent ${start}% ${end}%`);
-    cursor = end;
+  for (const [start, end] of VISIBLE) {
+    stops.push(`transparent ${cursor}% ${start}%`, `#000 ${start}% ${end}%`);
+    cursor = end as number;
   }
-  stops.push(`#000 ${cursor}% 100%`);
+  stops.push(`transparent ${cursor}% 100%`);
   return `linear-gradient(to right, ${stops.join(", ")})`;
 })();
+
 
 /**
  * Ana oyun alanı: solda ve sağda ikişer öğrenci (aynı görsel, sağ taraf aynalanmış),
