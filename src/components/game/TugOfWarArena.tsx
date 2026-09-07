@@ -30,10 +30,10 @@ export function TugOfWarArena({ ropePosition, pulse }: Props) {
           }}
         />
 
-        {/* Halat ipi — yumrukların ARKASINDAN geçer (z-[5] < z-10), böylece eller ipi
-            gerçekten kavramış gibi görünür ve ip avuç içinde kaybolur. */}
+        {/* TEK PARÇA sürekli halat — öğrencilerin ÖNÜNDE (z-20 > z-10), sadece yumruk
+            noktalarında maskeyle kayboluyor, böylece eller ipi gerçekten kavrıyor gibi olur. */}
         <div
-          className="pointer-events-none absolute left-[8%] right-[8%] top-[42.3%] z-[5] -translate-y-1/2 transition-transform duration-700 ease-out"
+          className="pointer-events-none absolute left-[8%] right-[8%] top-[42.3%] z-20 -translate-y-1/2 transition-transform duration-700 ease-out"
           style={{ transform: `translate(${shift * 0.2}%, -50%)` }}
         >
           <div
@@ -44,9 +44,14 @@ export function TugOfWarArena({ ropePosition, pulse }: Props) {
                 "repeating-linear-gradient(115deg, #b07a3c 0 6px, #d9a463 6px 11px, #8a5a26 11px 16px)",
               boxShadow:
                 "0 1px 2px rgba(0,0,0,0.35), inset 0 -1px 1px rgba(0,0,0,0.35), inset 0 1px 1px rgba(255,255,255,0.25)",
+              WebkitMaskImage:
+                "linear-gradient(to right, #000 0 8%, transparent 10.5% 15%, #000 17% 27%, transparent 29% 33.5%, #000 35.5% 64.5%, transparent 66.5% 71%, #000 73% 83%, transparent 85% 89.5%, #000 92% 100%)",
+              maskImage:
+                "linear-gradient(to right, #000 0 8%, transparent 10.5% 15%, #000 17% 27%, transparent 29% 33.5%, #000 35.5% 64.5%, transparent 66.5% 71%, #000 73% 83%, transparent 85% 89.5%, #000 92% 100%)",
             }}
           />
         </div>
+
 
 
         {/* Kırmızı bayrak — öğrencilerin ortasında */}
