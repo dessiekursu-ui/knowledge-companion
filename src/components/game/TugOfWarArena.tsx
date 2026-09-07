@@ -50,26 +50,27 @@ export function TugOfWarArena({ ropePosition, pulse }: Props) {
           }}
         />
 
-        {/* Halat (ön katman) — ellerin önünden geçer, gerçekten tutuyorlarmış gibi görünür */}
+        {/* Halat (ön katman) — dört yumruğun tam üzerinden geçer, böylece
+            öğrenciler halatı gerçekten kavramış gibi görünür. Maske penceresi
+            öğrencilerle birlikte kaydığı için eller her zaman halatı tutar. */}
         <div
-          className="pointer-events-none absolute inset-x-0 top-[42.6%] z-30 flex -translate-y-1/2 items-center"
+          className="pointer-events-none absolute inset-x-0 top-[42.6%] z-30 flex -translate-y-1/2 items-center transition-transform duration-700 ease-out"
           style={{
+            transform: `translateX(${shift * 0.6}%)`,
             maskImage:
-              "linear-gradient(to right, transparent 0%, transparent 18%, #000 27%, #000 73%, transparent 82%, transparent 100%)",
+              "linear-gradient(to right, transparent 0%, transparent 8%, #000 11.5%, #000 88.5%, transparent 92%, transparent 100%)",
             WebkitMaskImage:
-              "linear-gradient(to right, transparent 0%, transparent 18%, #000 27%, #000 73%, transparent 82%, transparent 100%)",
+              "linear-gradient(to right, transparent 0%, transparent 8%, #000 11.5%, #000 88.5%, transparent 92%, transparent 100%)",
           }}
         >
-          <div
-            className="relative flex w-full items-center transition-transform duration-700 ease-out"
-            style={{ transform: `translateX(${shift}%)` }}
-          >
+          <div className="relative flex w-full items-center">
             <div
-              className="absolute left-1/2 h-[clamp(6px,0.7vw,10px)] w-[300%] -translate-x-1/2"
+              className="absolute left-1/2 h-[clamp(6px,0.7vw,10px)] w-[300%] -translate-x-1/2 shadow-[0_1px_2px_rgba(0,0,0,0.35)]"
               style={ROPE_STYLE}
             />
           </div>
         </div>
+
 
         {/* Kırmızı bayrak — halatın ortasında, halatın üstünde durur */}
         <div className="pointer-events-none absolute inset-x-0 top-[42.6%] z-40 flex -translate-y-1/2 items-center">
