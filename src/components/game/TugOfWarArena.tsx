@@ -8,32 +8,39 @@ type Props = {
 };
 
 /**
- * Halat tek parça ve kesintisiz: soldaki öğrencilerin arkasından başlar, tüm
- * avuçların içinden geçer ve sağdaki öğrencilerin arkasında biter.
+ * Yumrukların halat genişliğine göre yatay konumları (%). Halat bu noktalarda
+ * parmakların ALTINA girer — böylece avuç içinde tutuluyormuş gibi görünür.
  */
-const VISIBLE: Array<[number, number]> = [[0, 100]];
+const FISTS: Array<[number, number]> = [
+  [8.4, 9.8],
+  [14.8, 16.0],
+  [20.3, 21.9],
+  [27.1, 28.6],
+  [71.4, 72.9],
+  [78.1, 79.7],
+  [84.0, 85.2],
+  [90.2, 91.6],
+];
 
-/** Uçlarda halatın öğrencilerin arkasına girerken yumuşak kaybolma payı (%). */
-const GRIP_FADE = 2.5;
+/** Uçlarda öğrencilerin arkasına girerken yumuşak kaybolma payı (%). */
+const EDGE_FADE = 2.5;
 
-
-/** Tek parça halat maskesi — yumruklarda avuç içine doğru yumuşak biçimde kaybolur. */
+/** Tek parça, kesintisiz halat maskesi — yalnızca yumruk noktalarında parmak altına girer. */
 const ROPE_MASK = (() => {
-  const stops: string[] = [];
-  let cursor = 0;
-  for (const [start, end] of VISIBLE) {
-    const inStart = Math.max(cursor, start - GRIP_FADE);
+  const stops: string[] = [`transparent 0%`, `#000 ${EDGE_FADE}%`];
+  for (const [start, end] of FISTS) {
     stops.push(
-      `transparent ${cursor}% ${inStart}%`,
-      `rgba(0,0,0,0.55) ${start}%`,
-      `#000 ${start + GRIP_FADE}% ${end - GRIP_FADE}%`,
-      `rgba(0,0,0,0.55) ${end}%`,
+      `#000 ${start - 0.5}%`,
+      `rgba(0,0,0,0.35) ${start}%`,
+      `transparent ${start + 0.35}% ${end - 0.35}%`,
+      `rgba(0,0,0,0.35) ${end}%`,
+      `#000 ${end + 0.5}%`,
     );
-    cursor = (end as number) + GRIP_FADE;
   }
-  stops.push(`transparent ${cursor}% 100%`);
+  stops.push(`#000 ${100 - EDGE_FADE}%`, `transparent 100%`);
   return `linear-gradient(to right, ${stops.join(", ")})`;
 })();
+
 
 
 
