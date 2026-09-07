@@ -60,21 +60,20 @@ export function TugOfWarArena(_props: Props) {
           className="relative z-10 w-[34%] max-w-[420px]"
         />
 
-        {/* TEK PARÇA, kesintisiz gri halat — soldaki öğrencilerin arkasından sağdakilerin arkasına */}
+        {/* TEK PARÇA, kesintisiz siyah halat — yumruklarda parmakların altına girer */}
         <div className="pointer-events-none absolute left-[3%] right-[3%] top-[42.3%] z-20 -translate-y-1/2">
-
           <div
             className="w-full rounded-full"
             style={{
               height: "max(4px, 0.45cqw)",
               background:
-                "repeating-linear-gradient(115deg, #9ca3af 0 5px, #e5e7eb 5px 9px, #8b9199 9px 13px)",
-
+                "repeating-linear-gradient(115deg, #000 0 5px, #1f1f1f 5px 9px, #000 9px 13px)",
               WebkitMaskImage: ROPE_MASK,
               maskImage: ROPE_MASK,
             }}
           />
         </div>
+
 
         {/* Kırmızı bayrak — halatın ortasında */}
         <div className="pointer-events-none absolute inset-x-0 top-[42.6%] z-30 flex -translate-y-1/2 items-center">
