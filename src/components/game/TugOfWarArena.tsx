@@ -62,9 +62,10 @@ export function TugOfWarArena(_props: Props) {
           <div
             className="w-full rounded-full"
             style={{
-              height: "max(4px, 0.5cqw)",
+              height: "max(4px, 0.45cqw)",
               background:
-                "repeating-linear-gradient(115deg, #b07a3c 0 5px, #d9a463 5px 9px, #8a5a26 9px 13px)",
+                "repeating-linear-gradient(115deg, #9ca3af 0 5px, #e5e7eb 5px 9px, #8b9199 9px 13px)",
+
               WebkitMaskImage: ROPE_MASK,
               maskImage: ROPE_MASK,
             }}
