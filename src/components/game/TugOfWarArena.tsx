@@ -11,23 +11,34 @@ type Props = {
  * Halatın görünür olduğu bölümler (halat genişliğine göre %): yumruklardan çıkıp
  * öğrenciler arasında ve ortada uzanır; gövde/boyun/baş üzerinden geçmez.
  */
-const VISIBLE = [
+const VISIBLE: Array<[number, number]> = [
   [11.4, 17.0],
   [26.0, 74.0],
   [83.0, 88.6],
 ];
 
-/** Tek parça halat maskesi — sadece yukarıdaki bölümlerde görünür. */
+
+/** Halatın avuç içine doğru yumuşakça girdiği pay (%) — parmaklar halatı kavrıyor gibi. */
+const GRIP_FADE = 1.1;
+
+/** Tek parça halat maskesi — yumruklarda avuç içine doğru yumuşak biçimde kaybolur. */
 const ROPE_MASK = (() => {
   const stops: string[] = [];
   let cursor = 0;
   for (const [start, end] of VISIBLE) {
-    stops.push(`transparent ${cursor}% ${start}%`, `#000 ${start}% ${end}%`);
-    cursor = end as number;
+    const inStart = Math.max(cursor, start - GRIP_FADE);
+    stops.push(
+      `transparent ${cursor}% ${inStart}%`,
+      `rgba(0,0,0,0.55) ${start}%`,
+      `#000 ${start + GRIP_FADE}% ${end - GRIP_FADE}%`,
+      `rgba(0,0,0,0.55) ${end}%`,
+    );
+    cursor = (end as number) + GRIP_FADE;
   }
   stops.push(`transparent ${cursor}% 100%`);
   return `linear-gradient(to right, ${stops.join(", ")})`;
 })();
+
 
 
 /**
@@ -51,9 +62,10 @@ export function TugOfWarArena(_props: Props) {
           <div
             className="w-full rounded-full"
             style={{
-              height: "max(4px, 0.5cqw)",
+              height: "max(4px, 0.45cqw)",
               background:
-                "repeating-linear-gradient(115deg, #b07a3c 0 5px, #d9a463 5px 9px, #8a5a26 9px 13px)",
+                "repeating-linear-gradient(115deg, #9ca3af 0 5px, #e5e7eb 5px 9px, #8b9199 9px 13px)",
+
               WebkitMaskImage: ROPE_MASK,
               maskImage: ROPE_MASK,
             }}
