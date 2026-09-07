@@ -30,7 +30,25 @@ export function TugOfWarArena({ ropePosition, pulse }: Props) {
           }}
         />
 
+        {/* Yeni halat ipi — öğrencilerin yumruklarının tam üzerinden geçer (z-20 > z-10) */}
+        <div
+          className="pointer-events-none absolute left-[10%] right-[10%] top-[42.3%] z-20 -translate-y-1/2 transition-transform duration-700 ease-out"
+          style={{ transform: `translate(${shift * 0.2}%, -50%)` }}
+        >
+          <div
+            className="w-full rounded-full"
+            style={{
+              height: "max(5px, 0.75cqw)",
+              background:
+                "repeating-linear-gradient(115deg, #b07a3c 0 6px, #d9a463 6px 11px, #8a5a26 11px 16px)",
+              boxShadow:
+                "0 1px 2px rgba(0,0,0,0.35), inset 0 -1px 1px rgba(0,0,0,0.35), inset 0 1px 1px rgba(255,255,255,0.25)",
+            }}
+          />
+        </div>
+
         {/* Kırmızı bayrak — öğrencilerin ortasında */}
+
         <div className="pointer-events-none absolute inset-x-0 top-[42.6%] z-40 flex -translate-y-1/2 items-center">
 
           <div
