@@ -7,13 +7,6 @@ type Props = {
   pulse?: 1 | 2 | null;
 };
 
-/** Tek halat dokusu: baştan sona aynı renk ve aynı kalınlık. */
-const ROPE_STYLE: React.CSSProperties = {
-  backgroundColor: "#d9b382",
-  backgroundImage:
-    "linear-gradient(to bottom, rgba(255,255,255,0.55) 0 22%, rgba(255,255,255,0.10) 45%, rgba(0,0,0,0.18) 80%, rgba(0,0,0,0.28) 100%), repeating-linear-gradient(60deg, rgba(140,96,54,0.55) 0 1px, rgba(255,255,255,0.30) 1px 3px, rgba(140,96,54,0.35) 3px 5px, rgba(255,255,255,0.10) 5px 7px)",
-  backgroundSize: "100% 100%, 7px 100%",
-};
 
 /**
  * Ana oyun alanı: solda ve sağda ikişer öğrenci (aynı görsel, sağ taraf aynalanmış),
