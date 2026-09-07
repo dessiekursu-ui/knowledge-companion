@@ -11,11 +11,12 @@ type Props = {
  * Halatın görünür olduğu bölümler (halat genişliğine göre %): yumruklardan çıkıp
  * öğrenciler arasında ve ortada uzanır; gövde/boyun/baş üzerinden geçmez.
  */
-const VISIBLE = [
+const VISIBLE: Array<[number, number]> = [
   [11.4, 17.0],
   [26.0, 74.0],
   [83.0, 88.6],
 ];
+
 
 /** Halatın avuç içine doğru yumuşakça girdiği pay (%) — parmaklar halatı kavrıyor gibi. */
 const GRIP_FADE = 1.1;
