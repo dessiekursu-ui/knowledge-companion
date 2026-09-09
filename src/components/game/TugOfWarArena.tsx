@@ -1,4 +1,4 @@
-import tugOfWarGame from "@/assets/tug-of-war-game.jpeg.asset.json";
+import tugOfWarGame from "@/assets/tug-of-war-game-widened.jpeg.asset.json";
 
 type Props = {
   /** -100 (Takım 1 kazandı) .. 0 (merkez) .. +100 (Takım 2 kazandı) */
