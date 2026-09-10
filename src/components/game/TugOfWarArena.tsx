@@ -21,7 +21,7 @@ export function TugOfWarArena({ ropePosition = 0, pulse = null }: Props) {
       <div
         className="relative"
         style={{
-          transform: `translateX(${clamped * 0.06}%)`,
+          transform: `translateX(${clamped * 0.15}%)`,
           transition: "transform 700ms cubic-bezier(0.22, 1, 0.36, 1)",
         }}
       >

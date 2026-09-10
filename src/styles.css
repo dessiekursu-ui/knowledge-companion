@@ -162,7 +162,7 @@
     transform: translateX(0);
   }
   35% {
-    transform: translateX(-1.6%);
+    transform: translateX(-3.2%);
   }
   100% {
     transform: translateX(0);
@@ -174,7 +174,7 @@
     transform: translateX(0);
   }
   35% {
-    transform: translateX(1.6%);
+    transform: translateX(3.2%);
   }
   100% {
     transform: translateX(0);
