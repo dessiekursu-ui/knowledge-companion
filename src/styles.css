@@ -147,37 +147,37 @@
 @keyframes tug-strain {
   0%,
   100% {
-    transform: translateX(0) scaleX(1);
+    transform: translateX(0);
   }
   25% {
-    transform: translateX(-0.5%) scaleX(1.006);
+    transform: translateX(-0.4%);
   }
   60% {
-    transform: translateX(0.5%) scaleX(1.006);
+    transform: translateX(0.4%);
   }
 }
 
 @keyframes tug-pull-1 {
   0% {
-    transform: translateX(0) scaleX(1);
+    transform: translateX(0);
   }
   35% {
-    transform: translateX(-1.6%) scaleX(1.012);
+    transform: translateX(-1.6%);
   }
   100% {
-    transform: translateX(0) scaleX(1);
+    transform: translateX(0);
   }
 }
 
 @keyframes tug-pull-2 {
   0% {
-    transform: translateX(0) scaleX(1);
+    transform: translateX(0);
   }
   35% {
-    transform: translateX(1.6%) scaleX(1.012);
+    transform: translateX(1.6%);
   }
   100% {
-    transform: translateX(0) scaleX(1);
+    transform: translateX(0);
   }
 }
 
