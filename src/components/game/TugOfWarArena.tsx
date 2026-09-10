@@ -37,23 +37,6 @@ export function TugOfWarArena({ ropePosition = 0, pulse = null }: Props) {
         </div>
       </div>
 
-      {/* Direkteki bayrağın dalgalanması */}
-      <div
-        className="pointer-events-none absolute left-1/2 top-[8%] h-[10%] w-[4%] -translate-x-1/2"
-        style={{
-          transform: `translateX(calc(-50% + ${clamped * 0.06}%))`,
-          transition: "transform 700ms cubic-bezier(0.22, 1, 0.36, 1)",
-        }}
-      >
-        <div
-          className="h-full w-full origin-left"
-          style={{
-            animation: `flag-wave ${pulse ? "0.45s" : "1.6s"} ease-in-out infinite`,
-            background: "var(--flag)",
-            clipPath: "polygon(0 0, 100% 18%, 100% 82%, 0 100%)",
-          }}
-        />
-      </div>
     </div>
   );
 }
