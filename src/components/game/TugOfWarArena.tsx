@@ -37,6 +37,28 @@ export function TugOfWarArena({ ropePosition = 0, pulse = null }: Props) {
         </div>
       </div>
 
+      {/* Sabit merkez çizgisi: resimdeki hareketli çizgi gizlenir, yerine sabit çizgi çizilir */}
+      <div className="pointer-events-none absolute inset-0">
+        {[
+          { top: "17%", height: "16%" },
+          { top: "47%", height: "35%" },
+        ].map((seg) => (
+          <div
+            key={seg.top}
+            className="absolute left-1/2 -translate-x-1/2 bg-panel"
+            style={{ top: seg.top, height: seg.height, width: "14%" }}
+          >
+            <div
+              className="absolute left-1/2 h-full -translate-x-1/2"
+              style={{
+                width: "3px",
+                backgroundImage:
+                  "repeating-linear-gradient(to bottom, var(--foreground) 0 10px, transparent 10px 20px)",
+              }}
+            />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
