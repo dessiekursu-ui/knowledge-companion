@@ -181,16 +181,6 @@
   }
 }
 
-@keyframes flag-wave {
-  0%,
-  100% {
-    transform: rotate(-4deg) translateY(0);
-  }
-  50% {
-    transform: rotate(4deg) translateY(-2px);
-  }
-}
-
 @layer base {
   * {
     border-color: var(--color-border);
