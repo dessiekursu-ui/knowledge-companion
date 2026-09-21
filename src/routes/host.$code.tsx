@@ -147,8 +147,10 @@ function HostScreen() {
             </section>
           ) : (
             <section>
-              <TugOfWarArena ropePosition={data.ropePosition} pulse={pulse} />
-              <div className="mt-10 text-center">
+              <div className="-mx-5 sm:-mx-10">
+                <TugOfWarArena ropePosition={data.ropePosition} pulse={pulse} />
+              </div>
+              <div className="mt-6 text-center">
                 {leadIn > 0 ? (
                   <>
                     <p className="text-sm font-semibold tracking-[0.3em] text-muted-foreground">
@@ -171,8 +173,8 @@ function HostScreen() {
         </div>
 
         {/* Yönetici paneli */}
-        <div className="mt-5 grid gap-4 rounded-[var(--radius)] bg-panel p-5 shadow-[var(--shadow-panel)] sm:grid-cols-[1fr_auto] sm:items-center">
-          <div className="flex flex-wrap gap-4 text-sm font-semibold text-foreground">
+        <div className="mt-3 grid gap-3 rounded-[var(--radius)] bg-panel px-4 py-3 shadow-[var(--shadow-panel)] sm:grid-cols-[1fr_auto] sm:items-center">
+          <div className="flex flex-wrap gap-2 text-xs font-semibold text-foreground">
             <StatusChip label="TAKIM 1" player={team1} />
             <StatusChip label="TAKIM 2" player={team2} />
           </div>
@@ -231,7 +233,7 @@ function StatusChip({
   player?: { name: string; connected: boolean } | undefined;
 }) {
   return (
-    <span className="rounded-full bg-muted px-3 py-1">
+    <span className="rounded-full bg-muted px-2.5 py-0.5">
       {label}: {player ? player.name : "—"} •{" "}
       {player ? (player.connected ? "HAZIR" : "BAĞLANTI KESİLDİ") : "BEKLENİYOR"}
     </span>
@@ -253,7 +255,7 @@ function Ctrl({
     <button
       onClick={onClick}
       disabled={disabled}
-      className={`rounded-xl px-4 py-2.5 text-sm font-bold transition-colors disabled:opacity-40 ${
+      className={`rounded-lg px-3.5 py-1.5 text-xs font-bold transition-colors disabled:opacity-40 ${
         primary
           ? "bg-foreground text-background"
           : "border-2 border-border bg-panel text-foreground hover:bg-muted"
