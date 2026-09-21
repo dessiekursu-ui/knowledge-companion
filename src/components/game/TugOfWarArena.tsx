@@ -1,4 +1,4 @@
-import tugOfWarGame from "@/assets/tug-of-war-full.jpeg.asset.json";
+import tugOfWarGame from "@/assets/tug-of-war-serious.png";
 
 type Props = {
   /** -100 (Takım 1 kazandı) .. 0 (merkez) .. +100 (Takım 2 kazandı) */
@@ -27,10 +27,10 @@ export function TugOfWarArena({ ropePosition = 0, pulse = null }: Props) {
       >
         <div style={{ animation, transformOrigin: "50% 50%", willChange: "transform" }}>
           <img
-            src={tugOfWarGame.url}
+            src={tugOfWarGame}
             alt="Dört öğrenci ortasında kırmızı bayrak bulunan halatı çekiyor"
-            width={1260}
-            height={540}
+            width={1584}
+            height={672}
             draggable={false}
             className="block h-auto w-full"
           />
