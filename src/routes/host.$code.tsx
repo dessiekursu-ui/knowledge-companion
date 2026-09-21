@@ -160,9 +160,6 @@ function HostScreen() {
                   </>
                 ) : (
                   <>
-                    <p className="text-sm font-semibold tracking-[0.3em] text-muted-foreground sm:text-base">
-                      SORU {q?.index ?? 1} / {q?.total ?? 10}
-                    </p>
                     {data.status === "PAUSED" && (
                       <p className="mt-3 text-3xl font-extrabold text-foreground">DURAKLATILDI</p>
                     )}
